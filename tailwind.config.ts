@@ -63,14 +63,17 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				bluepay: {
-					blue: '#0000FF',
-					darkBlue: '#000080',
-					lightBlue: '#1E90FF',
-					black: '#000000',
-					white: '#FFFFFF',
-					gray: '#F5F5F5',
-					darkGray: '#333333',
+			bluepay: {
+					blue: 'hsl(217 91% 60%)',
+					darkBlue: 'hsl(222 47% 6%)',
+					lightBlue: 'hsl(199 89% 48%)',
+					navy: 'hsl(222 47% 11%)',
+					glow: 'hsl(217 91% 60%)',
+				},
+				space: {
+					dark: 'hsl(var(--space-dark))',
+					glow: 'hsl(var(--space-glow))',
+					accent: 'hsl(var(--space-accent))',
 				}
 			},
 			borderRadius: {
