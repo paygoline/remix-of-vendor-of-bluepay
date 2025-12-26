@@ -12,20 +12,31 @@ const UserGreeting = ({ userData }: UserGreetingProps) => {
   return (
     <div className="flex justify-between items-center mb-3">
       <div className="flex items-center gap-3">
-        <Avatar className="w-10 h-10 border-2 border-white">
+        <Avatar 
+          className="w-11 h-11"
+          style={{
+            border: '2px solid hsl(217 91% 60% / 0.5)',
+          }}
+        >
           {userData?.profileImage ? (
             <AvatarImage src={userData.profileImage} alt="Profile" className="object-cover" />
           ) : (
-            <AvatarFallback className="bg-yellow-500">
-              <span className="text-white text-lg">👤</span>
+            <AvatarFallback className="bg-primary/20">
+              <span className="text-lg">👤</span>
             </AvatarFallback>
           )}
         </Avatar>
-        <h2 className="text-lg font-semibold">
-          Hi, <TypewriterText text={userData?.fullName || "User"} speed={100} className="font-semibold" />
+        <h2 className="text-lg font-semibold text-foreground">
+          Hi, <TypewriterText text={userData?.fullName || "User"} speed={100} className="font-semibold text-primary" />
         </h2>
       </div>
-      <div className="w-8 h-8 bg-bluepay-blue rounded-full flex items-center justify-center">
+      <div 
+        className="w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
+        style={{
+          background: 'linear-gradient(135deg, hsl(217 91% 60% / 0.2) 0%, hsl(222 47% 20% / 0.4) 100%)',
+          border: '1px solid hsl(217 91% 60% / 0.3)',
+        }}
+      >
         <span className="text-sm">🔔</span>
       </div>
     </div>
