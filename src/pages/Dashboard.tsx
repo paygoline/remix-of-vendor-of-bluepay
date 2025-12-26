@@ -22,7 +22,6 @@ const Dashboard = () => {
     const playWelcomeMessage = () => {
       if (hasPlayedWelcome.current || !userData?.fullName) return;
       
-      // Check if speech synthesis is supported
       if (!('speechSynthesis' in window)) {
         return;
       }
@@ -32,21 +31,15 @@ const Dashboard = () => {
       const welcomeText = `Hi ${userData.fullName}, welcome to bluepay to the latest version of bluepay, where you can make 200,000 naira daily just by purchasing your BPC code for the sum of 6,200 naira, kindly click on the BPC button to purchase your code directly from the application, have a nice day.`;
 
       const speak = () => {
-        // Cancel any ongoing speech
         window.speechSynthesis.cancel();
         
         const utterance = new SpeechSynthesisUtterance(welcomeText);
-        
-        // Configure speech settings for mobile compatibility
         utterance.rate = 0.9;
         utterance.pitch = 1;
         utterance.volume = 1;
         utterance.lang = 'en-US';
         
-        // Get voices and select the best one
         const voices = window.speechSynthesis.getVoices();
-        
-        // For mobile devices, prefer specific voices
         const preferredVoice = voices.find(voice => 
           voice.lang.includes('en') && 
           (voice.name.includes('Female') || 
@@ -59,43 +52,41 @@ const Dashboard = () => {
           utterance.voice = preferredVoice;
         }
 
-        // Error handling for mobile
-        utterance.onerror = (event) => {
-          // Silent fail for speech errors
-        };
-
-        // Speak with a delay to ensure everything is loaded
+        utterance.onerror = () => {};
         window.speechSynthesis.speak(utterance);
       };
 
-      // For iOS and Android, we need to ensure voices are loaded
       const voices = window.speechSynthesis.getVoices();
       if (voices.length === 0) {
-        // Voices not loaded yet, wait for them
         window.speechSynthesis.onvoiceschanged = () => {
           setTimeout(speak, 500);
         };
-        // Also try loading voices manually (helps on some Android devices)
         window.speechSynthesis.getVoices();
       } else {
-        // Voices already loaded
         setTimeout(speak, 800);
       }
     };
 
-    // Small delay to ensure page is fully loaded
     const timer = setTimeout(playWelcomeMessage, 1000);
     return () => clearTimeout(timer);
   }, [userData]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 pb-16 relative">
+    <div className="min-h-screen flex flex-col bg-background pb-20 relative">
+      {/* Space background effect */}
+      <div className="fixed inset-0 bg-gradient-to-b from-background via-background to-muted/20 pointer-events-none" />
+      <div className="fixed inset-0 opacity-30 pointer-events-none" 
+        style={{
+          backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(217 91% 60% / 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(199 89% 48% / 0.1) 0%, transparent 50%)'
+        }} 
+      />
+      
       <WelcomeOnboarding />
       <WithdrawalNotifications />
       <OpayNotificationBanner />
       <Header />
 
-      <div className="p-2 space-y-2">
+      <div className="p-3 space-y-3 relative z-10">
         <UserGreeting userData={userData} />
         <BalanceCard balance={balance} />
         <QuickActions />

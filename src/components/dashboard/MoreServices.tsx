@@ -10,50 +10,57 @@ const MoreServices = () => {
       id: 'support',
       title: 'Support',
       emoji: '📡',
-      bgColor: 'bg-gray-100',
       onClick: () => navigate("/support")
     },
     {
       id: 'group',
       title: 'Group',
       emoji: '🌐',
-      bgColor: 'bg-blue-100',
       onClick: () => navigate("/platform")
     },
     {
       id: 'earn',
       title: 'Earn More',
       emoji: '💲',
-      bgColor: 'bg-yellow-100',
       onClick: () => navigate("/earn-more")
     },
     {
       id: 'profile',
       title: 'Profile',
       emoji: '👤',
-      bgColor: 'bg-gray-100',
       onClick: () => navigate("/profile")
     }
   ];
 
   return (
-    <div className="bg-white rounded-xl p-3 mb-2 shadow-sm">
-      <h3 className="font-bold text-base mb-2 text-gray-800">More Services</h3>
-      <div className="grid grid-cols-4 gap-2">
-        {moreServices.map((service) => {
-          return (
+    <div 
+      className="rounded-xl p-4 mb-2"
+      style={{
+        background: 'hsl(var(--card) / 0.6)',
+        border: '1px solid hsl(var(--border) / 0.5)',
+        backdropFilter: 'blur(20px)',
+      }}
+    >
+      <h3 className="font-bold text-base mb-3 text-foreground">More Services</h3>
+      <div className="grid grid-cols-4 gap-3">
+        {moreServices.map((service) => (
+          <div 
+            key={service.id}
+            className="flex flex-col items-center cursor-pointer group"
+            onClick={service.onClick}
+          >
             <div 
-              key={service.id}
-              className="flex flex-col items-center cursor-pointer"
-              onClick={service.onClick}
+              className="h-12 w-12 rounded-xl mb-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+              style={{
+                background: 'linear-gradient(135deg, hsl(217 91% 60% / 0.15) 0%, hsl(222 47% 20% / 0.3) 100%)',
+                border: '1px solid hsl(217 91% 60% / 0.2)',
+              }}
             >
-              <div className={`h-10 w-10 ${service.bgColor} rounded-lg mb-1 flex items-center justify-center`}>
-                <span className="text-lg">{service.emoji}</span>
-              </div>
-              <p className="text-xs font-medium text-center text-gray-800">{service.title}</p>
+              <span className="text-xl">{service.emoji}</span>
             </div>
-          );
-        })}
+            <p className="text-xs font-medium text-center text-foreground/80">{service.title}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

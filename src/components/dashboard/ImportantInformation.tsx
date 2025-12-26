@@ -75,8 +75,8 @@ const ImportantInformation = () => {
           >
             {slide.type === 'image' ? (
               <Card 
-                className={`w-full h-full p-0 overflow-hidden shadow-lg ${
-                  slide.clickable ? 'cursor-pointer hover:shadow-xl transition-shadow' : ''
+                className={`w-full h-full p-0 overflow-hidden bg-card/60 border-border/50 backdrop-blur-xl ${
+                  slide.clickable ? 'cursor-pointer hover:border-primary/50 transition-all' : ''
                 }`}
                 onClick={() => handleImageClick(slide.clickable)}
               >
@@ -87,11 +87,24 @@ const ImportantInformation = () => {
                 />
               </Card>
             ) : (
-              <Card className="bg-gradient-to-r from-blue-500 to-purple-600 w-full h-full p-3 text-white shadow-lg flex flex-col">
-                <h3 className="text-base font-bold mb-2 text-white">Important Information</h3>
+              <Card 
+                className="w-full h-full p-3 text-foreground flex flex-col"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(217 91% 60% / 0.3) 0%, hsl(280 70% 50% / 0.2) 100%)',
+                  border: '1px solid hsl(217 91% 60% / 0.3)',
+                  backdropFilter: 'blur(20px)',
+                }}
+              >
+                <h3 className="text-base font-bold mb-2 text-foreground">Important Information</h3>
                 
-                <div className="bg-white/20 rounded-lg p-2 backdrop-blur-sm flex-1 flex flex-col">
-                  <h4 className="text-sm font-semibold mb-2 text-white">How to Buy BPC Code</h4>
+                <div 
+                  className="rounded-lg p-2 flex-1 flex flex-col"
+                  style={{
+                    background: 'hsl(217 91% 60% / 0.1)',
+                    border: '1px solid hsl(217 91% 60% / 0.2)',
+                  }}
+                >
+                  <h4 className="text-sm font-semibold mb-2 text-foreground">How to Buy BPC Code</h4>
                   
                   <div className="space-y-2 flex-1">
                     {steps.map((step, stepIndex) => (
@@ -105,19 +118,19 @@ const ImportantInformation = () => {
                       >
                         <div className={`w-4 h-4 rounded-full flex items-center justify-center mr-2 transition-all duration-500 flex-shrink-0 ${
                           stepIndex === currentStep 
-                            ? 'bg-yellow-400 text-blue-900 shadow-lg' 
-                            : 'bg-white/30 text-white'
+                            ? 'bg-primary text-primary-foreground shadow-lg' 
+                            : 'bg-muted/50 text-foreground/70'
                         }`}>
                           <span className="text-xs font-bold">{stepIndex + 1}</span>
                         </div>
                         <p className={`text-xs transition-all duration-500 ${
-                          stepIndex === currentStep ? 'font-semibold text-yellow-100' : 'text-white/90'
+                          stepIndex === currentStep ? 'font-semibold text-primary' : 'text-foreground/80'
                         }`}>
                           {stepIndex === currentStep ? (
                             <TypewriterText 
                               text={currentStepText} 
                               speed={80}
-                              className="text-yellow-100"
+                              className="text-primary"
                             />
                           ) : (
                             step
@@ -132,7 +145,7 @@ const ImportantInformation = () => {
                       <div
                         key={stepIndex}
                         className={`w-1 h-1 rounded-full transition-all duration-300 ${
-                          stepIndex === currentStep ? 'bg-yellow-400' : 'bg-white/40'
+                          stepIndex === currentStep ? 'bg-primary' : 'bg-muted-foreground/40'
                         }`}
                       />
                     ))}
@@ -150,7 +163,7 @@ const ImportantInformation = () => {
           <div
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
+              index === currentSlide ? 'bg-primary' : 'bg-muted-foreground/40'
             }`}
           />
         ))}

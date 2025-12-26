@@ -7,42 +7,52 @@ const BottomNavigation = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-16 bg-white border-t border-gray-200 fixed bottom-0 w-full flex justify-around items-center px-4 shadow-md">
+    <div 
+      className="h-18 fixed bottom-0 w-full flex justify-around items-center px-4 py-3"
+      style={{
+        background: 'hsl(var(--card) / 0.9)',
+        borderTop: '1px solid hsl(var(--border) / 0.5)',
+        backdropFilter: 'blur(20px)',
+      }}
+    >
       <div 
-        className="flex flex-col items-center cursor-pointer"
+        className="flex flex-col items-center cursor-pointer group"
         onClick={() => navigate("/dashboard")}
       >
-        <span className="text-lg text-bluepay-blue">💰</span>
-        <span className="text-xs font-medium mt-1">Wallet</span>
+        <span className="text-lg group-hover:scale-110 transition-transform">💰</span>
+        <span className="text-xs font-medium mt-1 text-primary">Wallet</span>
       </div>
       <div 
-        className="flex flex-col items-center cursor-pointer" 
+        className="flex flex-col items-center cursor-pointer group" 
         onClick={() => navigate("/platform")}
       >
-        <span className="text-lg text-gray-500">🌐</span>
-        <span className="text-xs font-medium mt-1 text-gray-500">Social</span>
+        <span className="text-lg group-hover:scale-110 transition-transform">🌐</span>
+        <span className="text-xs font-medium mt-1 text-muted-foreground">Social</span>
       </div>
       <div className="flex flex-col items-center">
         <Button 
-          className="rounded-full h-12 w-12 -mt-5 bg-bluepay-blue text-white hover:bg-blue-700 shadow-lg"
+          className="rounded-full h-14 w-14 -mt-6 shadow-lg space-glow"
+          style={{
+            background: 'linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(199 89% 48%) 100%)',
+          }}
           onClick={() => navigate("/buy-bpc")}
         >
           <span className="text-xl">🛍</span>
         </Button>
       </div>
       <div 
-        className="flex flex-col items-center cursor-pointer" 
+        className="flex flex-col items-center cursor-pointer group" 
         onClick={() => navigate("/data")}
       >
-        <span className="text-lg text-gray-500">📶</span>
-        <span className="text-xs font-medium mt-1 text-gray-500">Data</span>
+        <span className="text-lg group-hover:scale-110 transition-transform">📶</span>
+        <span className="text-xs font-medium mt-1 text-muted-foreground">Data</span>
       </div>
       <div 
-        className="flex flex-col items-center cursor-pointer" 
+        className="flex flex-col items-center cursor-pointer group" 
         onClick={() => navigate("/profile")}
       >
-        <span className="text-lg text-gray-500">👤</span>
-        <span className="text-xs font-medium mt-1 text-gray-500">Profile</span>
+        <span className="text-lg group-hover:scale-110 transition-transform">👤</span>
+        <span className="text-xs font-medium mt-1 text-muted-foreground">Profile</span>
       </div>
     </div>
   );
