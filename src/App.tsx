@@ -75,9 +75,11 @@ const ThemeManager = () => {
       };
     } else if (themeMode === 'device') {
       root.classList.add('device');
-    } else {
-      // Light mode is default
+    } else if (themeMode === 'light') {
       root.classList.add('light');
+    } else {
+      // Dark mode is default
+      root.classList.add('dark');
     }
   }, [themeMode]);
   
