@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  .dark {
     /* Dark Blue Space Theme - Default */
     --background: 222 47% 6%;
     --foreground: 210 40% 98%;
@@ -16,7 +17,7 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -25,12 +26,12 @@
     --muted-foreground: 215 20% 65%;
 
     --accent: 217 91% 60%;
-    --accent-foreground: 222 47% 6%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
+    --border: 217 33% 20%;
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
 
@@ -38,13 +39,13 @@
 
     /* Space theme specific */
     --space-dark: 222 47% 4%;
-    --space-glow: 217 91% 60%;
+    --space-glow: 217 91% 65%;
     --space-accent: 199 89% 48%;
 
     --sidebar-background: 222 47% 8%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 217 33% 17%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 33% 17%;
@@ -102,7 +103,7 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -111,12 +112,12 @@
     --muted-foreground: 215 20% 65%;
 
     --accent: 217 91% 60%;
-    --accent-foreground: 222 47% 6%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
+    --border: 217 33% 20%;
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
 
