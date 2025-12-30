@@ -112,15 +112,30 @@ const WithdrawalForm = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="fixed inset-0 bg-background z-0" />
+        <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-0" />
+        <div className="fixed bottom-0 right-1/4 w-80 h-80 bg-space-glow/15 rounded-full blur-3xl z-0" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary relative z-10"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="bg-card border-b sticky top-0 z-10">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-background z-0" />
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-0" />
+      <div className="fixed bottom-0 right-1/4 w-80 h-80 bg-space-glow/15 rounded-full blur-3xl z-0" />
+      
+      <header 
+        className="sticky top-0 z-10"
+        style={{
+          background: 'hsl(var(--card) / 0.8)',
+          borderBottom: '1px solid hsl(var(--border) / 0.5)',
+          backdropFilter: 'blur(20px)'
+        }}
+      >
         <div className="container mx-auto px-4 py-4 flex items-center gap-4">
           <button onClick={() => navigate(-1)} className="text-foreground">
             <ArrowLeft size={24} />
@@ -129,9 +144,22 @@ const WithdrawalForm = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6 max-w-md">
-        <div className="bg-card rounded-lg p-6 shadow-sm mb-6">
-          <div className="bg-primary/10 rounded-lg p-4 mb-6">
+      <div className="container mx-auto px-4 py-6 max-w-md relative z-10">
+        <div 
+          className="rounded-lg p-6 mb-6"
+          style={{
+            background: 'hsl(var(--card) / 0.6)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)'
+          }}
+        >
+          <div 
+            className="rounded-lg p-4 mb-6"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--space-glow) / 0.1))',
+              border: '1px solid hsl(var(--primary) / 0.3)'
+            }}
+          >
             <p className="text-sm text-muted-foreground mb-1">Available Balance</p>
             <p className="text-2xl font-bold text-primary">₦{currentEarnings.toLocaleString()}</p>
           </div>
@@ -140,47 +168,55 @@ const WithdrawalForm = () => {
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="bankName">Bank Name</Label>
+              <Label htmlFor="bankName" className="text-foreground">Bank Name</Label>
               <Input
                 id="bankName"
                 value={bankName}
                 onChange={(e) => setBankName(e.target.value)}
                 placeholder="Enter bank name"
+                className="bg-card/60 border-border/50 text-foreground placeholder:text-muted-foreground"
+                style={{ backdropFilter: 'blur(10px)' }}
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="accountName">Account Name</Label>
+              <Label htmlFor="accountName" className="text-foreground">Account Name</Label>
               <Input
                 id="accountName"
                 value={accountName}
                 onChange={(e) => setAccountName(e.target.value)}
                 placeholder="Enter account name"
+                className="bg-card/60 border-border/50 text-foreground placeholder:text-muted-foreground"
+                style={{ backdropFilter: 'blur(10px)' }}
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="accountNumber">Account Number</Label>
+              <Label htmlFor="accountNumber" className="text-foreground">Account Number</Label>
               <Input
                 id="accountNumber"
                 value={accountNumber}
                 onChange={(e) => setAccountNumber(e.target.value)}
                 placeholder="Enter 10-digit account number"
+                className="bg-card/60 border-border/50 text-foreground placeholder:text-muted-foreground"
+                style={{ backdropFilter: 'blur(10px)' }}
                 maxLength={10}
                 required
               />
             </div>
 
             <div>
-              <Label htmlFor="withdrawalAmount">Withdrawal Amount</Label>
+              <Label htmlFor="withdrawalAmount" className="text-foreground">Withdrawal Amount</Label>
               <Input
                 id="withdrawalAmount"
                 type="number"
                 value={withdrawalAmount}
                 onChange={(e) => setWithdrawalAmount(e.target.value)}
                 placeholder="Enter amount (minimum ₦100,000)"
+                className="bg-card/60 border-border/50 text-foreground placeholder:text-muted-foreground"
+                style={{ backdropFilter: 'blur(10px)' }}
                 min={100000}
                 required
               />
@@ -191,7 +227,10 @@ const WithdrawalForm = () => {
 
             <Button 
               type="submit" 
-              className="w-full mt-6"
+              className="w-full mt-6 space-glow"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+              }}
               disabled={!withdrawalAmount || parseFloat(withdrawalAmount) < 100000}
             >
               Proceed to Payment
@@ -199,7 +238,13 @@ const WithdrawalForm = () => {
           </form>
         </div>
 
-        <div className="bg-muted/50 rounded-lg p-4 text-sm text-muted-foreground">
+        <div 
+          className="rounded-lg p-4 text-sm text-muted-foreground"
+          style={{
+            background: 'hsl(var(--muted) / 0.3)',
+            border: '1px solid hsl(var(--border) / 0.3)'
+          }}
+        >
           <p className="font-medium mb-2">📌 Important Notice:</p>
           <p>• Minimum withdrawal: ₦100,000</p>
           <p>• Activation fee: ₦13,450</p>
