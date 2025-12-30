@@ -155,31 +155,57 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bluepay-blue text-white">
-      <header className="p-3 flex items-center">
-        <button onClick={() => navigate(-1)} className="flex items-center text-white">
+    <div className="min-h-screen text-foreground relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-background z-0" />
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-0" />
+      <div className="fixed bottom-0 right-1/4 w-80 h-80 bg-space-glow/15 rounded-full blur-3xl z-0" />
+      
+      <header 
+        className="p-3 flex items-center relative z-10"
+        style={{
+          background: 'hsl(var(--card) / 0.8)',
+          borderBottom: '1px solid hsl(var(--border) / 0.5)',
+          backdropFilter: 'blur(20px)'
+        }}
+      >
+        <button onClick={() => navigate(-1)} className="flex items-center text-foreground">
           <ArrowLeft className="h-6 w-6 mr-2" />
         </button>
         <h1 className="text-xl font-bold flex-1 text-center">Profile</h1>
         <div className="w-6"></div>
       </header>
 
-      <div className="flex flex-col items-center p-4">
+      <div className="flex flex-col items-center p-4 relative z-10">
         <div className="relative mb-3">
-          <Avatar className="w-20 h-20 border-2 border-white">
+          <Avatar 
+            className="w-20 h-20"
+            style={{
+              border: '2px solid hsl(var(--primary) / 0.5)'
+            }}
+          >
             {userData?.profileImage ? (
               <AvatarImage src={userData.profileImage} alt="Profile" className="object-cover" />
             ) : (
-              <AvatarFallback className="bg-yellow-500 text-white text-2xl">
+              <AvatarFallback 
+                className="text-2xl"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+                  color: 'hsl(var(--primary-foreground))'
+                }}
+              >
                 <User className="h-8 w-8" />
               </AvatarFallback>
             )}
           </Avatar>
           <div 
-            className="absolute bottom-0 right-0 bg-white text-bluepay-blue rounded-full p-1.5 cursor-pointer"
+            className="absolute bottom-0 right-0 rounded-full p-1.5 cursor-pointer"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+            }}
             onClick={triggerFileUpload}
           >
-            <Upload className="h-3 w-3" />
+            <Upload className="h-3 w-3 text-primary-foreground" />
             <input 
               type="file" 
               ref={fileInputRef}
@@ -191,55 +217,71 @@ const Profile = () => {
         </div>
 
         <h2 className="text-xl font-bold">{userData?.fullName || "User"}</h2>
-        <p className="text-gray-300 mb-4">{userData?.email || "No email set"}</p>
+        <p className="text-muted-foreground mb-4">{userData?.email || "No email set"}</p>
 
-        <div className="w-full max-w-md bg-white rounded-xl p-4 text-gray-800">
+        <div 
+          className="w-full max-w-md rounded-xl p-4"
+          style={{
+            background: 'hsl(var(--card) / 0.6)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)'
+          }}
+        >
           <h3 className="text-lg font-semibold mb-4">Account Information</h3>
           
           <div className="space-y-3">
             <div>
-              <p className="text-gray-500 mb-1 text-sm">Full Name</p>
+              <p className="text-muted-foreground mb-1 text-sm">Full Name</p>
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2 text-gray-400" />
+                <User className="h-4 w-4 mr-2 text-muted-foreground" />
                 <p className="text-sm">{userData?.fullName || "Not set"}</p>
               </div>
-              <div className="h-px bg-gray-200 my-2"></div>
+              <div className="h-px bg-border/30 my-2"></div>
             </div>
             
             <div>
-              <p className="text-gray-500 mb-1 text-sm">Email Address</p>
+              <p className="text-muted-foreground mb-1 text-sm">Email Address</p>
               <p className="text-sm">{userData?.email || "Not set"}</p>
-              <div className="h-px bg-gray-200 my-2"></div>
+              <div className="h-px bg-border/30 my-2"></div>
             </div>
             
             <div>
-              <p className="text-gray-500 mb-1 text-sm">Account Level</p>
+              <p className="text-muted-foreground mb-1 text-sm">Account Level</p>
               <p className="text-sm">Basic</p>
-              <div className="h-px bg-gray-200 my-2"></div>
+              <div className="h-px bg-border/30 my-2"></div>
             </div>
 
             {referralCode && (
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200">
-                <p className="text-gray-700 font-semibold mb-2 text-sm">Your Referral Code</p>
+              <div 
+                className="p-4 rounded-lg"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--space-glow) / 0.1))',
+                  border: '1px solid hsl(var(--primary) / 0.3)'
+                }}
+              >
+                <p className="font-semibold mb-2 text-sm">Your Referral Code</p>
                 <div className="flex items-center justify-between mb-3">
-                  <code className="text-2xl font-bold text-blue-600">{referralCode}</code>
+                  <code className="text-2xl font-bold text-primary">{referralCode}</code>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handleCopyReferralCode}
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-1 bg-card/50 border-border/50"
                   >
                     <Copy className="h-3 w-3" />
                     Copy
                   </Button>
                 </div>
-                <p className="text-xs text-gray-600 mb-2">
-                  You've referred <span className="font-bold text-blue-600">{referralCount}</span> {referralCount === 1 ? 'person' : 'people'}
+                <p className="text-xs text-muted-foreground mb-2">
+                  You've referred <span className="font-bold text-primary">{referralCount}</span> {referralCount === 1 ? 'person' : 'people'}
                 </p>
                 <Button
                   onClick={handleShareReferralLink}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2"
                   size="sm"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+                  }}
                 >
                   <Share2 className="h-4 w-4" />
                   Share Referral Link
@@ -249,51 +291,51 @@ const Profile = () => {
 
             <div>
               <div 
-                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between cursor-pointer hover:bg-muted/20 p-2 rounded-lg transition-colors"
                 onClick={() => setIsResetBalanceOpen(true)}
               >
                 <div className="flex items-center">
-                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-2">
-                    <RotateCcw className="h-4 w-4 text-red-600" />
+                  <div className="w-8 h-8 bg-destructive/20 rounded-full flex items-center justify-center mr-2">
+                    <RotateCcw className="h-4 w-4 text-destructive" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">Reset Balance</p>
-                    <p className="text-xs text-gray-500">Reset your account balance</p>
+                    <p className="font-medium text-sm">Reset Balance</p>
+                    <p className="text-xs text-muted-foreground">Reset your account balance</p>
                   </div>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </div>
-              <div className="h-px bg-gray-200 my-2"></div>
+              <div className="h-px bg-border/30 my-2"></div>
             </div>
             
             <div>
               <div 
-                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between cursor-pointer hover:bg-muted/20 p-2 rounded-lg transition-colors"
                 onClick={handleDownloadApp}
               >
                 <div className="flex items-center">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-2">
-                    <Download className="h-4 w-4 text-green-600" />
+                  <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center mr-2">
+                    <Download className="h-4 w-4 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900 text-sm">Download App</p>
-                    <p className="text-xs text-gray-500">Get the mobile app</p>
+                    <p className="font-medium text-sm">Download App</p>
+                    <p className="text-xs text-muted-foreground">Get the mobile app</p>
                   </div>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground" />
               </div>
-              <div className="h-px bg-gray-200 my-2"></div>
+              <div className="h-px bg-border/30 my-2"></div>
             </div>
             
             <div>
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-gray-500 mb-1 text-sm">Theme</p>
+                  <p className="text-muted-foreground mb-1 text-sm">Theme</p>
                   <div className="flex items-center">
-                    {themeMode === 'light' && <Sun className="h-4 w-4 mr-2 text-gray-500" />}
-                    {themeMode === 'dark' && <Moon className="h-4 w-4 mr-2 text-gray-500" />}
-                    {themeMode === 'system' && <CircleHelp className="h-4 w-4 mr-2 text-gray-500" />}
-                    {themeMode === 'device' && <Smartphone className="h-4 w-4 mr-2 text-gray-500" />}
+                    {themeMode === 'light' && <Sun className="h-4 w-4 mr-2 text-muted-foreground" />}
+                    {themeMode === 'dark' && <Moon className="h-4 w-4 mr-2 text-muted-foreground" />}
+                    {themeMode === 'system' && <CircleHelp className="h-4 w-4 mr-2 text-muted-foreground" />}
+                    {themeMode === 'device' && <Smartphone className="h-4 w-4 mr-2 text-muted-foreground" />}
                     <p className="text-sm">{themeMode === 'light' ? 'Light Mode' : 
                                            themeMode === 'dark' ? 'Dark Mode' : 
                                            themeMode === 'system' ? 'System Mode' : 'Device Mode'}</p>
@@ -302,11 +344,11 @@ const Profile = () => {
 
                 <Sheet>
                   <SheetTrigger asChild>
-                    <Button variant="outline" size="sm" className="bg-gray-100 text-xs">
+                    <Button variant="outline" size="sm" className="bg-card/50 border-border/50 text-xs">
                       Toggle
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="bottom" className="h-72">
+                  <SheetContent side="bottom" className="h-72 bg-card border-border">
                     <SheetHeader className="mb-3">
                       <SheetTitle className="text-lg">Select Theme</SheetTitle>
                       <SheetDescription className="text-sm">
@@ -316,59 +358,59 @@ const Profile = () => {
                     <div className="grid gap-3 py-2">
                       <div className="space-y-2">
                         <div 
-                          className={`flex items-center justify-between p-2 rounded-lg ${themeMode === 'light' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}
+                          className={`flex items-center justify-between p-2 rounded-lg cursor-pointer ${themeMode === 'light' ? 'bg-primary/20 border border-primary/50' : 'bg-muted/30'}`}
                           onClick={() => handleThemeChange('light')}
                         >
                           <div className="flex items-center">
-                            <Sun className="h-4 w-4 mr-2 text-blue-600" />
+                            <Sun className="h-4 w-4 mr-2 text-primary" />
                             <div>
                               <p className="font-medium text-sm">Light Mode</p>
-                              <p className="text-xs text-gray-500">Standard light appearance</p>
+                              <p className="text-xs text-muted-foreground">Standard light appearance</p>
                             </div>
                           </div>
-                          {themeMode === 'light' && <div className="h-2 w-2 bg-blue-500 rounded-full"></div>}
+                          {themeMode === 'light' && <div className="h-2 w-2 bg-primary rounded-full"></div>}
                         </div>
 
                         <div 
-                          className={`flex items-center justify-between p-2 rounded-lg ${themeMode === 'dark' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}
+                          className={`flex items-center justify-between p-2 rounded-lg cursor-pointer ${themeMode === 'dark' ? 'bg-primary/20 border border-primary/50' : 'bg-muted/30'}`}
                           onClick={() => handleThemeChange('dark')}
                         >
                           <div className="flex items-center">
-                            <Moon className="h-4 w-4 mr-2 text-blue-600" />
+                            <Moon className="h-4 w-4 mr-2 text-primary" />
                             <div>
                               <p className="font-medium text-sm">Dark Mode</p>
-                              <p className="text-xs text-gray-500">Easier on the eyes</p>
+                              <p className="text-xs text-muted-foreground">Easier on the eyes</p>
                             </div>
                           </div>
-                          {themeMode === 'dark' && <div className="h-2 w-2 bg-blue-500 rounded-full"></div>}
+                          {themeMode === 'dark' && <div className="h-2 w-2 bg-primary rounded-full"></div>}
                         </div>
 
                         <div 
-                          className={`flex items-center justify-between p-2 rounded-lg ${themeMode === 'system' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}
+                          className={`flex items-center justify-between p-2 rounded-lg cursor-pointer ${themeMode === 'system' ? 'bg-primary/20 border border-primary/50' : 'bg-muted/30'}`}
                           onClick={() => handleThemeChange('system')}
                         >
                           <div className="flex items-center">
-                            <CircleHelp className="h-4 w-4 mr-2 text-blue-600" />
+                            <CircleHelp className="h-4 w-4 mr-2 text-primary" />
                             <div>
                               <p className="font-medium text-sm">System Mode</p>
-                              <p className="text-xs text-gray-500">Match system settings</p>
+                              <p className="text-xs text-muted-foreground">Match system settings</p>
                             </div>
                           </div>
-                          {themeMode === 'system' && <div className="h-2 w-2 bg-blue-500 rounded-full"></div>}
+                          {themeMode === 'system' && <div className="h-2 w-2 bg-primary rounded-full"></div>}
                         </div>
 
                         <div 
-                          className={`flex items-center justify-between p-2 rounded-lg ${themeMode === 'device' ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}
+                          className={`flex items-center justify-between p-2 rounded-lg cursor-pointer ${themeMode === 'device' ? 'bg-primary/20 border border-primary/50' : 'bg-muted/30'}`}
                           onClick={() => handleThemeChange('device')}
                         >
                           <div className="flex items-center">
-                            <Smartphone className="h-4 w-4 mr-2 text-blue-600" />
+                            <Smartphone className="h-4 w-4 mr-2 text-primary" />
                             <div>
                               <p className="font-medium text-sm">Device Mode</p>
-                              <p className="text-xs text-gray-500">Optimized for device</p>
+                              <p className="text-xs text-muted-foreground">Optimized for device</p>
                             </div>
                           </div>
-                          {themeMode === 'device' && <div className="h-2 w-2 bg-blue-500 rounded-full"></div>}
+                          {themeMode === 'device' && <div className="h-2 w-2 bg-primary rounded-full"></div>}
                         </div>
                       </div>
                     </div>

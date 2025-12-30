@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "../stores/userStore";
 import { toast } from "@/hooks/use-toast";
-import { ChevronDown } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -170,12 +170,28 @@ const Withdraw = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <header className="bg-blue-600 text-white py-3 px-4 text-center">
-        <h1 className="text-xl font-bold">Transfer To Bank</h1>
+    <div className="min-h-screen flex flex-col text-foreground relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-background z-0" />
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-0" />
+      <div className="fixed bottom-0 right-1/4 w-80 h-80 bg-space-glow/15 rounded-full blur-3xl z-0" />
+      
+      <header 
+        className="py-3 px-4 text-center relative z-10 flex items-center"
+        style={{
+          background: 'hsl(var(--card) / 0.8)',
+          borderBottom: '1px solid hsl(var(--border) / 0.5)',
+          backdropFilter: 'blur(20px)'
+        }}
+      >
+        <button onClick={() => navigate(-1)} className="text-foreground">
+          <ArrowLeft className="h-5 w-5" />
+        </button>
+        <h1 className="text-xl font-bold flex-1">Transfer To Bank</h1>
+        <div className="w-5"></div>
       </header>
 
-      <div className="p-4">
+      <div className="p-4 relative z-10">
         <h2 className="text-2xl font-bold mb-4">Bank Details</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -184,13 +200,14 @@ const Withdraw = () => {
               type="text"
               value={accountName}
               onChange={(e) => setAccountName(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base bg-card/60 border-primary/50 text-foreground placeholder:text-muted-foreground"
+              style={{ backdropFilter: 'blur(10px)' }}
               placeholder={isLoadingAccountName ? "Loading account name..." : "Account Name"}
               disabled={isLoadingAccountName}
             />
             {isLoadingAccountName && (
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               </div>
             )}
           </div>
@@ -200,7 +217,8 @@ const Withdraw = () => {
               type="text"
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base bg-card/60 border-primary/50 text-foreground placeholder:text-muted-foreground"
+              style={{ backdropFilter: 'blur(10px)' }}
               placeholder="Account Number (10 digits)"
               maxLength={10}
             />
@@ -208,10 +226,13 @@ const Withdraw = () => {
 
           <div className="relative">
             <Select value={bank} onValueChange={setBank}>
-              <SelectTrigger className="w-full border-2 border-blue-600 rounded-lg p-3 h-12 text-base">
+              <SelectTrigger 
+                className="w-full rounded-lg p-3 h-12 text-base bg-card/60 border-primary/50 text-foreground"
+                style={{ backdropFilter: 'blur(10px)' }}
+              >
                 <SelectValue placeholder="Select Bank" />
               </SelectTrigger>
-              <SelectContent className="max-h-[250px]">
+              <SelectContent className="max-h-[250px] bg-card border-border">
                 {nigerianBanks.map((bankName) => (
                   <SelectItem key={bankName} value={bankName}>
                     {bankName}
@@ -226,7 +247,8 @@ const Withdraw = () => {
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base bg-card/60 border-primary/50 text-foreground placeholder:text-muted-foreground"
+              style={{ backdropFilter: 'blur(10px)' }}
               placeholder="Amount"
             />
           </div>
@@ -236,26 +258,37 @@ const Withdraw = () => {
               type="text"
               value={bpcCode}
               onChange={(e) => setBpcCode(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base bg-card/60 border-primary/50 text-foreground placeholder:text-muted-foreground"
+              style={{ backdropFilter: 'blur(10px)' }}
               placeholder="BPC CODE (Buy BPC)"
             />
           </div>
           
           <div 
-            className="text-blue-600 text-base font-semibold cursor-pointer"
+            className="text-primary text-base font-semibold cursor-pointer hover:text-space-glow transition-colors"
             onClick={() => navigate("/buy-bpc")}
           >
             <p>Buy BPC code</p>
           </div>
           
-          <div className="mt-6">
-            <p className="text-lg font-bold">Available Balance: ₦{balance.toLocaleString()}</p>
+          <div 
+            className="mt-6 p-4 rounded-lg"
+            style={{
+              background: 'hsl(var(--card) / 0.6)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <p className="text-lg font-bold">Available Balance: <span className="text-primary">₦{balance.toLocaleString()}</span></p>
           </div>
           
           <Button 
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-base py-4 mt-3"
+            className="w-full text-base py-4 mt-3 space-glow"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+            }}
           >
             {isSubmitting ? "Processing..." : "Submit"}
           </Button>

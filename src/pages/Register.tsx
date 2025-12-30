@@ -138,31 +138,43 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-bluepay-blue text-white">
-      <header className="p-3">
-        <button onClick={() => navigate("/")} className="flex items-center text-white">
+    <div className="min-h-screen flex flex-col text-foreground relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-background z-0" />
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl z-0" />
+      <div className="fixed bottom-0 right-1/4 w-80 h-80 bg-space-glow/15 rounded-full blur-3xl z-0" />
+      
+      <header className="p-3 relative z-10">
+        <button onClick={() => navigate("/")} className="flex items-center text-foreground">
           <ArrowLeft className="h-5 w-5 mr-2" />
         </button>
         <div className="absolute top-3 right-3">
-          <span className="text-white cursor-pointer text-sm" onClick={handleHelpClick}>You Need Help?</span>
+          <span className="text-foreground cursor-pointer text-sm hover:text-primary transition-colors" onClick={handleHelpClick}>You Need Help?</span>
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col justify-center p-4">
+      <div className="flex-1 flex flex-col justify-center p-4 relative z-10">
         <div className="max-w-md w-full mx-auto">
-          <h1 className="text-2xl font-bold mb-2 text-white text-center">BLUEPAY</h1>
-          <h2 className="text-xl font-bold mb-3 text-white">Welcome!</h2>
+          <h1 className="text-2xl font-bold mb-2 text-foreground text-center">BLUEPAY</h1>
+          <h2 className="text-xl font-bold mb-3 text-foreground">Welcome!</h2>
           
           {referralCode && (
-            <div className="bg-green-500/20 border border-green-400 rounded-lg p-2 mb-3">
-              <p className="text-green-100 text-xs">
+            <div 
+              className="rounded-lg p-2 mb-3"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--space-glow) / 0.15))',
+                border: '1px solid hsl(var(--primary) / 0.4)',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <p className="text-primary text-xs">
                 🎉 Referral code detected: <span className="font-bold">{referralCode}</span>
               </p>
-              <p className="text-green-100 text-xs">Your referrer will be credited when you register!</p>
+              <p className="text-muted-foreground text-xs">Your referrer will be credited when you register!</p>
             </div>
           )}
           
-          <p className="text-gray-100 mb-4 text-sm">
+          <p className="text-muted-foreground mb-4 text-sm">
             Get your account ready and instantly start buying, selling airtime and data online and start paying all your bills in cheaper price.
           </p>
 
@@ -172,7 +184,7 @@ const Register = () => {
               placeholder="Your Full Name"
               value={formData.fullName}
               onChange={handleChange}
-              className="rounded-md bg-white/10 border-white/20 px-3 py-2 text-white placeholder:text-gray-300"
+              className="rounded-md bg-card/60 border-border/50 px-3 py-2 text-foreground placeholder:text-muted-foreground backdrop-blur-sm"
               required
             />
             <Input
@@ -181,7 +193,7 @@ const Register = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              className="rounded-md bg-white/10 border-white/20 px-3 py-2 text-white placeholder:text-gray-300"
+              className="rounded-md bg-card/60 border-border/50 px-3 py-2 text-foreground placeholder:text-muted-foreground backdrop-blur-sm"
               required
             />
             <Input
@@ -190,18 +202,18 @@ const Register = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="rounded-md bg-white/10 border-white/20 px-3 py-2 text-white placeholder:text-gray-300"
+              className="rounded-md bg-card/60 border-border/50 px-3 py-2 text-foreground placeholder:text-muted-foreground backdrop-blur-sm"
               required
             />
             <div className="relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 text-sm">+234</span>
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground text-sm">+234</span>
               <Input
                 name="phoneNumber"
                 type="tel"
                 placeholder="Phone Number"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="rounded-md bg-white/10 border-white/20 pl-12 py-2 text-white placeholder:text-gray-300"
+                className="rounded-md bg-card/60 border-border/50 pl-12 py-2 text-foreground placeholder:text-muted-foreground backdrop-blur-sm"
                 required
               />
             </div>
@@ -211,18 +223,21 @@ const Register = () => {
               placeholder="Referral Code (Optional)"
               value={formData.enteredReferralCode}
               onChange={handleChange}
-              className="rounded-md bg-white/10 border-white/20 px-3 py-2 text-white placeholder:text-gray-300 uppercase"
+              className="rounded-md bg-card/60 border-border/50 px-3 py-2 text-foreground placeholder:text-muted-foreground backdrop-blur-sm uppercase"
               maxLength={6}
             />
 
-            <p className="text-xs text-gray-200">
+            <p className="text-xs text-muted-foreground">
               Any further actions indicates that you agree with our terms & conditions!
             </p>
 
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-white hover:bg-gray-100 text-bluepay-blue py-2 font-bold rounded-full disabled:opacity-50"
+              className="w-full py-2 font-bold rounded-full disabled:opacity-50 space-glow"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--space-glow)))',
+              }}
             >
               {isLoading ? (
                 <>
@@ -236,10 +251,10 @@ const Register = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <span className="text-gray-200 text-sm">Already have an account? </span>
+            <span className="text-muted-foreground text-sm">Already have an account? </span>
             <button 
               onClick={() => navigate("/pin")} 
-              className="text-white font-medium underline text-sm"
+              className="text-primary font-medium underline text-sm hover:text-space-glow transition-colors"
             >
               Sign in
             </button>
