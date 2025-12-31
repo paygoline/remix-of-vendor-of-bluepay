@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import {
   Dialog,
@@ -25,26 +26,26 @@ const JoinGroupsAd = () => {
   };
 
   const handleJoinTelegram = () => {
-    window.location.href = "https://t.me/Officialbluepay";
+    window.location.href = "https://t.me/Officialbluepay1";
     handleDismiss();
   };
 
   const handleJoinWhatsApp = () => {
-    window.location.href = "https://chat.whatsapp.com/bluepay";
+    window.location.href = "https://chat.whatsapp.com/LnyOvI0EbH34Bb2MEn01tX";
     handleDismiss();
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-sm mx-auto bg-white dark:bg-gray-800 border-2 border-bluepay-blue">
+      <DialogContent className="max-w-sm mx-auto bg-card border-2 border-primary">
         <DialogHeader className="text-center">
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-lg font-bold text-bluepay-blue flex-1">
+            <DialogTitle className="text-lg font-bold text-primary flex-1">
               Join Our Community! 🎉
             </DialogTitle>
             <button
               onClick={handleDismiss}
-              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+              className="p-1 hover:bg-secondary rounded"
             >
               <X className="h-4 w-4" />
             </button>
@@ -52,7 +53,7 @@ const JoinGroupsAd = () => {
         </DialogHeader>
         
         <div className="space-y-4 py-4">
-          <p className="text-sm text-gray-600 dark:text-gray-300 text-center">
+          <p className="text-sm text-muted-foreground text-center">
             Stay updated with the latest news, promotions, and get instant support by joining our official groups!
           </p>
           
@@ -77,7 +78,7 @@ const JoinGroupsAd = () => {
           <Button
             variant="outline"
             onClick={handleDismiss}
-            className="w-full text-gray-600 border-gray-300 hover:bg-gray-50"
+            className="w-full text-muted-foreground border-border hover:bg-secondary"
           >
             Maybe Later
           </Button>
