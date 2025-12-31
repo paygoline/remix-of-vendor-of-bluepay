@@ -12,67 +12,122 @@ const Support = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <header className="bg-[#222222] text-white py-3 px-4 flex justify-between items-center sticky top-0 z-10">
-        <button onClick={() => navigate("/dashboard")} className="text-lg">
+    <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+      <div className="fixed top-0 right-0 w-96 h-96 bg-space-glow/15 rounded-full blur-3xl" />
+      <div className="fixed bottom-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+      
+      <header 
+        className="relative z-10 py-3 px-4 flex justify-between items-center sticky top-0"
+        style={{
+          background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+        }}
+      >
+        <button onClick={() => navigate("/dashboard")} className="text-lg text-primary-foreground">
           <ArrowLeft size={20} />
         </button>
-        <h1 className="text-xl font-semibold">Support</h1>
+        <h1 className="text-xl font-semibold text-primary-foreground">Support</h1>
         <div className="w-6 h-6"></div>
       </header>
 
-      <div className="p-4 flex-1">
-        <h2 className="text-xl font-bold mb-4">How can we help you?</h2>
+      <div className="relative z-10 p-4 flex-1">
+        <h2 className="text-xl font-bold mb-4 text-foreground">How can we help you?</h2>
         
         <div className="space-y-4">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-5 shadow-lg border border-blue-100">
+          <div 
+            className="rounded-2xl p-5 shadow-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--card) / 0.9) 0%, hsl(var(--secondary) / 0.8) 100%)',
+              border: '1px solid hsl(var(--primary) / 0.3)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-md">
-                <Mail className="h-6 w-6 text-white" />
+              <div 
+                className="h-12 w-12 rounded-full flex items-center justify-center shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+                }}
+              >
+                <Mail className="h-6 w-6 text-primary-foreground" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-gray-800">Email Support</h3>
-                <p className="text-gray-600 text-sm">Get comprehensive help via email</p>
+                <h3 className="text-lg font-bold text-foreground">Email Support</h3>
+                <p className="text-muted-foreground text-sm">Get comprehensive help via email</p>
               </div>
             </div>
             <Button 
-              className="w-full mt-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200"
+              className="w-full mt-4 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200 text-primary-foreground"
+              style={{
+                background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+              }}
               onClick={() => window.open('mailto:bluepaycustomerservice25@gmail.com')}
             >
               Send Email
             </Button>
           </div>
           
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-5 shadow-lg border border-green-100">
+          <div 
+            className="rounded-2xl p-5 shadow-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--card) / 0.9) 0%, hsl(142 76% 15% / 0.5) 100%)',
+              border: '1px solid hsl(142 76% 36% / 0.3)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-md">
+              <div 
+                className="h-12 w-12 rounded-full flex items-center justify-center shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 69% 45%) 100%)',
+                }}
+              >
                 <Phone className="h-6 w-6 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-gray-800">WhatsApp Support</h3>
-                <p className="text-gray-600 text-sm">Quick chat on WhatsApp</p>
+                <h3 className="text-lg font-bold text-foreground">WhatsApp Support</h3>
+                <p className="text-muted-foreground text-sm">Quick chat on WhatsApp</p>
               </div>
             </div>
             <Button 
-              className="w-full mt-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200"
+              className="w-full mt-4 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200 text-white"
+              style={{
+                background: 'linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 69% 45%) 100%)',
+              }}
               onClick={() => window.open('https://wa.me/2349079076212')}
             >
               Chat on WhatsApp
             </Button>
           </div>
           
-          <div className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-2xl p-5 shadow-lg border border-purple-100">
+          <div 
+            className="rounded-2xl p-5 shadow-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--card) / 0.9) 0%, hsl(270 76% 15% / 0.5) 100%)',
+              border: '1px solid hsl(270 76% 50% / 0.3)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md">
+              <div 
+                className="h-12 w-12 rounded-full flex items-center justify-center shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(270 76% 50%) 0%, hsl(270 69% 60%) 100%)',
+                }}
+              >
                 <LifeBuoy className="h-6 w-6 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-gray-800">Live Chat Support</h3>
-                <p className="text-gray-600 text-sm">Instant chat with support agents</p>
+                <h3 className="text-lg font-bold text-foreground">Live Chat Support</h3>
+                <p className="text-muted-foreground text-sm">Instant chat with support agents</p>
               </div>
             </div>
             <Button 
-              className="w-full mt-4 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200"
+              className="w-full mt-4 py-3 text-sm font-semibold rounded-xl shadow-md transition-all duration-200 text-white"
+              style={{
+                background: 'linear-gradient(135deg, hsl(270 76% 50%) 0%, hsl(270 69% 60%) 100%)',
+              }}
               onClick={handleLiveChatClick}
             >
               Start Live Chat
@@ -81,8 +136,8 @@ const Support = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <p className="text-gray-500 text-sm">Available 24/7 for your support needs</p>
-          <p className="text-blue-600 font-medium mt-1 text-sm">bluepaycustomerservice25@gmail.com</p>
+          <p className="text-muted-foreground text-sm">Available 24/7 for your support needs</p>
+          <p className="text-primary font-medium mt-1 text-sm">bluepaycustomerservice25@gmail.com</p>
         </div>
       </div>
     </div>
