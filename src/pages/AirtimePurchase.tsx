@@ -72,27 +72,44 @@ const AirtimePurchase = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <header className="bg-blue-600 text-white py-3 px-4">
+    <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+      <div className="fixed top-0 right-0 w-96 h-96 bg-space-glow/15 rounded-full blur-3xl" />
+      <div className="fixed bottom-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+      
+      <header 
+        className="relative z-10 py-3 px-4"
+        style={{
+          background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+        }}
+      >
         <div className="flex items-center">
-          <button onClick={() => navigate("/dashboard")} className="mr-2">
+          <button onClick={() => navigate("/dashboard")} className="mr-2 text-primary-foreground">
             <ArrowLeft size={20} />
           </button>
-          <h1 className="text-xl font-bold">Buy Airtime</h1>
+          <h1 className="text-xl font-bold text-primary-foreground">Buy Airtime</h1>
         </div>
       </header>
 
-      <div className="p-4 flex-1">
+      <div className="relative z-10 p-4 flex-1">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-1 text-sm">Select Network</label>
+            <label className="block text-foreground mb-1 text-sm">Select Network</label>
             <Select value={network} onValueChange={setNetwork}>
-              <SelectTrigger className="w-full border-2 border-blue-600 rounded-lg p-3 h-12 text-base">
+              <SelectTrigger 
+                className="w-full rounded-lg p-3 h-12 text-base text-foreground"
+                style={{
+                  background: 'hsl(var(--card) / 0.8)',
+                  border: '2px solid hsl(var(--primary))',
+                  backdropFilter: 'blur(10px)',
+                }}
+              >
                 <SelectValue placeholder="Select Network" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-card border-border">
                 {networks.map((net) => (
-                  <SelectItem key={net} value={net}>
+                  <SelectItem key={net} value={net} className="text-foreground">
                     {net}
                   </SelectItem>
                 ))}
@@ -101,46 +118,71 @@ const AirtimePurchase = () => {
           </div>
           
           <div>
-            <label className="block text-gray-700 mb-1 text-sm">Phone Number</label>
+            <label className="block text-foreground mb-1 text-sm">Phone Number</label>
             <Input
               type="tel"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base text-foreground placeholder:text-muted-foreground"
+              style={{
+                background: 'hsl(var(--card) / 0.8)',
+                border: '2px solid hsl(var(--primary))',
+                backdropFilter: 'blur(10px)',
+              }}
               placeholder="Enter 11-digit phone number"
               maxLength={11}
             />
           </div>
           
           <div>
-            <label className="block text-gray-700 mb-1 text-sm">Amount</label>
+            <label className="block text-foreground mb-1 text-sm">Amount</label>
             <Input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base text-foreground placeholder:text-muted-foreground"
+              style={{
+                background: 'hsl(var(--card) / 0.8)',
+                border: '2px solid hsl(var(--primary))',
+                backdropFilter: 'blur(10px)',
+              }}
               placeholder="Enter amount"
             />
           </div>
           
           <div>
-            <label className="block text-gray-700 mb-1 text-sm">BPC CODE</label>
+            <label className="block text-foreground mb-1 text-sm">BPC CODE</label>
             <Input
               type="text"
               value={bpcCode}
               onChange={(e) => setBpcCode(e.target.value)}
-              className="w-full border-2 border-blue-600 rounded-lg p-3 text-base"
+              className="w-full rounded-lg p-3 text-base text-foreground placeholder:text-muted-foreground"
+              style={{
+                background: 'hsl(var(--card) / 0.8)',
+                border: '2px solid hsl(var(--primary))',
+                backdropFilter: 'blur(10px)',
+              }}
               placeholder="Enter BPC code"
             />
           </div>
           
-          <div className="mt-6">
-            <p className="text-lg font-bold">Available Balance: ₦{balance.toLocaleString()}</p>
+          <div 
+            className="mt-6 p-4 rounded-xl"
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            <p className="text-lg font-bold text-foreground">Available Balance: ₦{balance.toLocaleString()}</p>
           </div>
           
           <Button 
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-base py-4 mt-3"
+            className="w-full text-base py-4 mt-3 text-primary-foreground"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+            }}
           >
             Purchase Airtime
           </Button>
