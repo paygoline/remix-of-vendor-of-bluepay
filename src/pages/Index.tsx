@@ -114,7 +114,7 @@ const Index = () => {
                   filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.5))',
                 }}
               >
-                2025
+                2026
               </div>
               <p className="text-foreground/90 text-lg md:text-xl font-medium">
                 🎉 Wishing you prosperity & success! 🎉
