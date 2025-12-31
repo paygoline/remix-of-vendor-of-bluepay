@@ -9,18 +9,30 @@ const Faq = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-background relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+      <div className="fixed top-0 right-0 w-96 h-96 bg-space-glow/15 rounded-full blur-3xl" />
+      <div className="fixed bottom-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+
       <Header />
       
-      <div className="flex-1 p-5">
+      <div className="relative z-10 flex-1 p-5">
         <div className="mb-4 flex items-center">
-          <button onClick={() => navigate("/dashboard")} className="mr-2">
+          <button onClick={() => navigate("/dashboard")} className="mr-2 text-foreground">
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h2 className="text-2xl font-bold">About BLUEPAY</h2>
+          <h2 className="text-2xl font-bold text-foreground">About BLUEPAY</h2>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm mb-6">
+        <div 
+          className="rounded-xl p-6 shadow-lg mb-6"
+          style={{
+            background: 'hsl(var(--card) / 0.8)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)',
+          }}
+        >
           <div className="flex justify-center mb-8">
             <img 
               src="/lovable-uploads/9c19c608-d185-4699-b545-9999f7f6fe47.png" 
@@ -31,7 +43,7 @@ const Faq = () => {
           
           <div className="space-y-6">
             <div>
-              <p className="text-gray-800 leading-relaxed">
+              <p className="text-foreground/90 leading-relaxed">
                 BLUEPAY is the new and improved version of Blue Pay, offering enhanced features, 
                 better security, and a more streamlined user experience. We've taken all the feedback 
                 from our users to create the ultimate financial platform.
@@ -39,16 +51,16 @@ const Faq = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-2">Our Mission</h3>
-              <p className="text-gray-800 leading-relaxed">
+              <h3 className="text-xl font-bold mb-2 text-foreground">Our Mission</h3>
+              <p className="text-foreground/90 leading-relaxed">
                 BLUEPAY is dedicated to providing seamless financial services to our users. 
                 Our mission is to make digital transactions accessible, secure, and rewarding for everyone.
               </p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-2">What We Offer</h3>
-              <ul className="list-disc pl-5 space-y-2">
+              <h3 className="text-xl font-bold mb-2 text-foreground">What We Offer</h3>
+              <ul className="list-disc pl-5 space-y-2 text-foreground/90">
                 <li>Daily withdrawals up to ₦200,000</li>
                 <li>BPC token rewards system</li>
                 <li>Airtime and data purchases</li>
@@ -58,8 +70,8 @@ const Faq = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-2">How It Works</h3>
-              <p className="text-gray-800 leading-relaxed">
+              <h3 className="text-xl font-bold mb-2 text-foreground">How It Works</h3>
+              <p className="text-foreground/90 leading-relaxed">
                 BLUEPAY operates on a daily reward system. Users are allocated a daily withdrawal limit which 
                 resets every 24 hours. By participating in platform activities and maintaining BPC tokens, 
                 users can increase their daily withdrawal limits and earn additional rewards.
@@ -68,28 +80,35 @@ const Faq = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <h3 className="text-xl font-bold mb-4">Frequently Asked Questions</h3>
+        <div 
+          className="rounded-xl p-6 shadow-lg"
+          style={{
+            background: 'hsl(var(--card) / 0.8)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)',
+          }}
+        >
+          <h3 className="text-xl font-bold mb-4 text-foreground">Frequently Asked Questions</h3>
           
           <div className="space-y-4">
             <div>
-              <h4 className="font-semibold">How do I increase my daily withdrawal limit?</h4>
-              <p className="text-gray-700 mt-1">Purchase and hold BPC tokens to increase your daily withdrawal limit.</p>
+              <h4 className="font-semibold text-foreground">How do I increase my daily withdrawal limit?</h4>
+              <p className="text-muted-foreground mt-1">Purchase and hold BPC tokens to increase your daily withdrawal limit.</p>
             </div>
             
             <div>
-              <h4 className="font-semibold">Is BLUEPAY available in all countries?</h4>
-              <p className="text-gray-700 mt-1">Currently, BLUEPAY services are available in selected regions. We're expanding rapidly!</p>
+              <h4 className="font-semibold text-foreground">Is BLUEPAY available in all countries?</h4>
+              <p className="text-muted-foreground mt-1">Currently, BLUEPAY services are available in selected regions. We're expanding rapidly!</p>
             </div>
             
             <div>
-              <h4 className="font-semibold">How do I contact customer support?</h4>
-              <p className="text-gray-700 mt-1">You can reach our support team through the Support section in the app or via our Telegram channel.</p>
+              <h4 className="font-semibold text-foreground">How do I contact customer support?</h4>
+              <p className="text-muted-foreground mt-1">You can reach our support team through the Support section in the app or via our Telegram channel.</p>
             </div>
             
             <div>
-              <h4 className="font-semibold">Are there fees for transactions?</h4>
-              <p className="text-gray-700 mt-1">BLUEPAY maintains minimal transaction fees to ensure platform sustainability.</p>
+              <h4 className="font-semibold text-foreground">Are there fees for transactions?</h4>
+              <p className="text-muted-foreground mt-1">BLUEPAY maintains minimal transaction fees to ensure platform sustainability.</p>
             </div>
           </div>
         </div>

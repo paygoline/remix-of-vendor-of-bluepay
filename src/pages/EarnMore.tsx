@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, TrendingUp, Users, Copy, Share2, CheckCircle, Wallet, ArrowUpCircle, Loader2, DollarSign } from "lucide-react";
+import { ArrowLeft, TrendingUp, Users, Copy, Share2, CheckCircle, Wallet, ArrowUpCircle, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -152,7 +153,7 @@ const EarnMore = () => {
   };
 
   const handleTaxJoinGroup = async () => {
-    const whatsappLink = "https://chat.whatsapp.com/JNuHAVaGNgQD40cQXOwFwV";
+    const whatsappLink = "https://chat.whatsapp.com/LnyOvI0EbH34Bb2MEn01tX";
     const telegramLink = "https://t.me/+wYh9iSrC3YkyMTlk";
     
     window.open(whatsappLink, '_blank');
@@ -209,44 +210,76 @@ const EarnMore = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
+        <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary relative z-10" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background gradients */}
+      <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+      <div className="fixed top-0 right-0 w-96 h-96 bg-space-glow/15 rounded-full blur-3xl" />
+      <div className="fixed bottom-0 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+
       {/* Header */}
-      <header className="bg-primary text-primary-foreground py-4 px-5">
+      <header 
+        className="relative z-10 py-4 px-5 sticky top-0"
+        style={{
+          background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+        }}
+      >
         <div className="flex items-center">
           <Button 
             variant="ghost" 
             size="icon"
             onClick={() => navigate(-1)}
-            className="mr-3 text-primary-foreground hover:bg-primary/90"
+            className="mr-3 text-primary-foreground hover:bg-white/10"
           >
             <ArrowLeft className="h-6 w-6" />
           </Button>
-          <h1 className="text-2xl font-bold">Earn More</h1>
+          <h1 className="text-2xl font-bold text-primary-foreground">Earn More</h1>
         </div>
       </header>
 
-      <div className="p-5 space-y-6">
+      <div className="relative z-10 p-5 space-y-6">
         {/* Stats Overview */}
         <div className="grid grid-cols-3 gap-3">
-          <Card className="p-4 text-center">
+          <Card 
+            className="p-4 text-center"
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <Users className="h-6 w-6 mx-auto mb-2 text-primary" />
             <p className="text-2xl font-bold text-foreground">{referralCount}</p>
             <p className="text-xs text-muted-foreground">Referrals</p>
           </Card>
-          <Card className="p-4 text-center">
-            <Wallet className="h-6 w-6 mx-auto mb-2 text-green-600" />
+          <Card 
+            className="p-4 text-center"
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
+            <Wallet className="h-6 w-6 mx-auto mb-2 text-green-400" />
             <p className="text-2xl font-bold text-foreground">₦{formatCurrency(referralEarnings)}</p>
             <p className="text-xs text-muted-foreground">Earnings</p>
           </Card>
-          <Card className="p-4 text-center">
-            <TrendingUp className="h-6 w-6 mx-auto mb-2 text-blue-600" />
+          <Card 
+            className="p-4 text-center"
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
+            <TrendingUp className="h-6 w-6 mx-auto mb-2 text-primary" />
             <p className="text-2xl font-bold text-foreground">₦{formatCurrency(referralRate)}</p>
             <p className="text-xs text-muted-foreground">Per Referral</p>
           </Card>
@@ -255,9 +288,12 @@ const EarnMore = () => {
         {/* Quick Withdraw Button */}
         <Button 
           onClick={handleWithdraw}
-          className="w-full"
+          className="w-full text-primary-foreground"
           size="lg"
           disabled={referralEarnings < 100000}
+          style={{
+            background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+          }}
         >
           <Wallet className="w-5 h-5 mr-2" />
           Withdraw Earnings
@@ -269,33 +305,67 @@ const EarnMore = () => {
         )}
 
         {/* Referral Details */}
-        <Card className="p-5">
+        <Card 
+          className="p-5"
+          style={{
+            background: 'hsl(var(--card) / 0.8)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)',
+          }}
+        >
           <div className="flex items-center mb-4">
-            <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-              <Users className="h-6 w-6 text-green-600" />
+            <div 
+              className="h-12 w-12 rounded-full flex items-center justify-center mr-4"
+              style={{
+                background: 'linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 69% 45%) 100%)',
+              }}
+            >
+              <Users className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold">Referral Program</h3>
+              <h3 className="text-lg font-semibold text-foreground">Referral Program</h3>
               <p className="text-sm text-muted-foreground">Share and earn ₦{formatCurrency(referralRate)}/referral</p>
             </div>
           </div>
           
           <div className="space-y-4">
-            <div className="bg-accent p-4 rounded-lg">
-              <h4 className="font-semibold text-sm mb-2">Your Referral Code</h4>
-              <div className="flex items-center gap-2 p-3 bg-background rounded border">
-                <span className="font-mono text-lg font-bold flex-1">{referralCode}</span>
-                <Button size="sm" variant="outline" onClick={copyReferralCode}>
+            <div 
+              className="p-4 rounded-lg"
+              style={{
+                background: 'hsl(var(--secondary) / 0.5)',
+              }}
+            >
+              <h4 className="font-semibold text-sm mb-2 text-foreground">Your Referral Code</h4>
+              <div 
+                className="flex items-center gap-2 p-3 rounded"
+                style={{
+                  background: 'hsl(var(--background) / 0.5)',
+                  border: '1px solid hsl(var(--border) / 0.5)',
+                }}
+              >
+                <span className="font-mono text-lg font-bold flex-1 text-foreground">{referralCode}</span>
+                <Button size="sm" variant="outline" onClick={copyReferralCode} className="border-primary/50">
                   <Copy className="h-4 w-4" />
                 </Button>
               </div>
             </div>
 
-            <div className="bg-accent p-4 rounded-lg">
-              <h4 className="font-semibold text-sm mb-2">Your Referral Link</h4>
-              <div className="flex items-center gap-2 p-3 bg-background rounded border">
-                <span className="text-sm flex-1 break-all">{generateReferralLink()}</span>
-                <Button size="sm" variant="outline" onClick={copyReferralLink}>
+            <div 
+              className="p-4 rounded-lg"
+              style={{
+                background: 'hsl(var(--secondary) / 0.5)',
+              }}
+            >
+              <h4 className="font-semibold text-sm mb-2 text-foreground">Your Referral Link</h4>
+              <div 
+                className="flex items-center gap-2 p-3 rounded"
+                style={{
+                  background: 'hsl(var(--background) / 0.5)',
+                  border: '1px solid hsl(var(--border) / 0.5)',
+                }}
+              >
+                <span className="text-sm flex-1 break-all text-foreground">{generateReferralLink()}</span>
+                <Button size="sm" variant="outline" onClick={copyReferralLink} className="border-primary/50">
                   <Copy className="h-4 w-4" />
                 </Button>
               </div>
@@ -304,7 +374,7 @@ const EarnMore = () => {
             <div className="grid grid-cols-2 gap-3">
               <Button 
                 variant="outline" 
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 border-primary/50"
                 onClick={shareReferralLink}
               >
                 <Share2 className="h-4 w-4" />
@@ -312,6 +382,7 @@ const EarnMore = () => {
               </Button>
               <Button 
                 variant="outline"
+                className="border-primary/50"
                 onClick={copyReferralMessage}
               >
                 <Copy className="h-4 w-4" />
@@ -319,11 +390,17 @@ const EarnMore = () => {
               </Button>
             </div>
             
-            <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg">
+            <div 
+              className="p-4 rounded-lg"
+              style={{
+                background: 'hsl(var(--primary) / 0.1)',
+                border: '1px solid hsl(var(--primary) / 0.3)',
+              }}
+            >
               <div className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+                <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <h5 className="font-semibold text-sm">How it works:</h5>
+                  <h5 className="font-semibold text-sm text-foreground">How it works:</h5>
                   <ul className="text-sm text-muted-foreground mt-1 space-y-1">
                     <li>• Share your referral code or link with friends</li>
                     <li>• When they register, you earn ₦{formatCurrency(referralRate)}</li>
@@ -338,9 +415,15 @@ const EarnMore = () => {
 
         {/* Withdrawal History */}
         {withdrawalHistory.length > 0 && (
-          <Card>
+          <Card
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-foreground">
                 <Wallet className="w-5 h-5" />
                 Recent Withdrawals
               </CardTitle>
@@ -348,10 +431,16 @@ const EarnMore = () => {
             <CardContent>
               <div className="space-y-2">
                 {withdrawalHistory.map((withdrawal) => (
-                  <div key={withdrawal.id} className="flex items-center justify-between p-3 bg-accent rounded-lg">
+                  <div 
+                    key={withdrawal.id} 
+                    className="flex items-center justify-between p-3 rounded-lg"
+                    style={{
+                      background: 'hsl(var(--secondary) / 0.5)',
+                    }}
+                  >
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium">₦{formatCurrency(withdrawal.amount)}</span>
+                        <span className="text-sm font-medium text-foreground">₦{formatCurrency(withdrawal.amount)}</span>
                         {getStatusBadge(withdrawal.status)}
                       </div>
                       <p className="text-xs text-muted-foreground">
@@ -362,30 +451,30 @@ const EarnMore = () => {
                         })}
                       </p>
                       {withdrawal.status === 'awaiting_activation_payment' && (
-                        <p className="text-xs text-amber-600 mt-1">
+                        <p className="text-xs text-amber-400 mt-1">
                           Please pay the activation fee and upload your receipt.
                         </p>
                       )}
                       {withdrawal.status === 'under_review' && (
-                        <p className="text-xs text-blue-600 mt-1">
+                        <p className="text-xs text-primary mt-1">
                           Payment uploaded. We'll review shortly.
                         </p>
                       )}
                       {(withdrawal.status === 'approved' || withdrawal.status === 'paid') && (
-                        <p className="text-xs text-green-600 mt-1">
+                        <p className="text-xs text-green-400 mt-1">
                           {withdrawal.status === 'approved' ? 'Withdrawal approved. Payout queued.' : 'Withdrawal completed.'}
                         </p>
                       )}
                       {withdrawal.status === 'rejected' && (
                         <div className="mt-1">
-                          <p className="text-xs text-destructive">
+                          <p className="text-xs text-red-400">
                             Withdrawal rejected: {withdrawal.notes || 'No reason provided'}. Contact support on Telegram.
                           </p>
                           <Button
                             variant="link"
                             size="sm"
-                            className="h-auto p-0 text-xs"
-                            onClick={() => window.open('https://t.me/+wYh9iSrC3YkyMTlk', '_blank')}
+                            className="h-auto p-0 text-xs text-primary"
+                            onClick={() => window.open('https://t.me/Officialbluepay1', '_blank')}
                           >
                             Contact Support
                           </Button>
@@ -401,10 +490,22 @@ const EarnMore = () => {
 
         {/* Tax/Join Group Bonus */}
         {!taxJoinCompletedAt && (
-          <Card>
+          <Card
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <CardContent className="pt-6">
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-                <p className="text-sm font-medium mb-2">
+              <div 
+                className="rounded-lg p-4"
+                style={{
+                  background: 'hsl(var(--primary) / 0.1)',
+                  border: '1px solid hsl(var(--primary) / 0.3)',
+                }}
+              >
+                <p className="text-sm font-medium mb-2 text-foreground">
                   🎁 Boost Your Earnings!
                 </p>
                 <p className="text-sm text-muted-foreground mb-3">
@@ -412,8 +513,10 @@ const EarnMore = () => {
                 </p>
                 <Button 
                   onClick={handleTaxJoinGroup}
-                  className="w-full"
-                  variant="default"
+                  className="w-full text-primary-foreground"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
+                  }}
                 >
                   Perform Tax / Join Group
                 </Button>
@@ -423,10 +526,22 @@ const EarnMore = () => {
         )}
 
         {taxJoinCompletedAt && (
-          <Card>
+          <Card
+            style={{
+              background: 'hsl(var(--card) / 0.8)',
+              border: '1px solid hsl(var(--border) / 0.5)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
             <CardContent className="pt-6">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <p className="text-sm text-green-800 font-medium">
+              <div 
+                className="rounded-lg p-4"
+                style={{
+                  background: 'hsl(142 76% 36% / 0.1)',
+                  border: '1px solid hsl(142 76% 36% / 0.3)',
+                }}
+              >
+                <p className="text-sm font-medium text-green-400">
                   ✨ Bonus Active! +₦10,000 for 24hrs
                 </p>
               </div>
@@ -435,9 +550,15 @@ const EarnMore = () => {
         )}
 
         {/* Upgrade Referral Rate Section */}
-        <Card>
+        <Card
+          style={{
+            background: 'hsl(var(--card) / 0.8)',
+            border: '1px solid hsl(var(--border) / 0.5)',
+            backdropFilter: 'blur(20px)',
+          }}
+        >
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-foreground">
               <ArrowUpCircle className="w-5 h-5" />
               Upgrade Referral Rate
             </CardTitle>
@@ -453,13 +574,17 @@ const EarnMore = () => {
             ].map((tier) => (
               <div
                 key={tier.rate}
-                className={`p-4 border rounded-lg ${
-                  tier.current ? 'border-primary bg-primary/5' : 'border-border'
+                className={`p-4 rounded-lg ${
+                  tier.current ? 'border-primary' : ''
                 }`}
+                style={{
+                  background: tier.current ? 'hsl(var(--primary) / 0.1)' : 'hsl(var(--secondary) / 0.3)',
+                  border: tier.current ? '1px solid hsl(var(--primary))' : '1px solid hsl(var(--border) / 0.5)',
+                }}
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold">{tier.label} - ₦{formatCurrency(tier.rate)}/referral</p>
+                    <p className="font-semibold text-foreground">{tier.label} - ₦{formatCurrency(tier.rate)}/referral</p>
                     <p className="text-sm text-muted-foreground">
                       {tier.current ? 'Current Rate' : `Upgrade for ₦${formatCurrency(tier.rate)}`}
                     </p>
@@ -470,8 +595,16 @@ const EarnMore = () => {
                 </div>
               </div>
             ))}
-            <p className="text-xs text-muted-foreground text-center pt-2">
-              Contact support to upgrade your referral rate
+            <p className="text-sm text-muted-foreground mt-4">
+              To upgrade your referral rate, please contact support on{" "}
+              <a 
+                href="https://t.me/Officialbluepay1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Telegram
+              </a>
             </p>
           </CardContent>
         </Card>
