@@ -50,7 +50,7 @@ const ChatBot = () => {
     }
     
     if (message.includes('support') || message.includes('help') || message.includes('contact')) {
-      return 'You can reach our support team via:\n• Email: bluepaycustomerservice25@gmail.com\n• Telegram: @Officialbluepay\n• WhatsApp: +2347059382766\n• Live chat through our Telegram bot';
+      return 'You can reach our support team via:\n• Email: bluepay129@gmail.com\n• Telegram: https://t.me/+mCOs_ePA7Rk2YzRk\n• WhatsApp: +2347056337834\n• Live chat through our Telegram bot';
     }
     
     if (message.includes('registration') || message.includes('account') || message.includes('sign up')) {
@@ -73,7 +73,7 @@ const ChatBot = () => {
       return 'You can download the BluePay mobile app from our website or use the web version. Both offer the same great features and security.';
     }
     
-    return 'Thank you for your question! For detailed assistance, please contact our support team at bluepaycustomerservice25@gmail.com or join our Telegram channel @Officialbluepay.';
+    return 'Thank you for your question! For detailed assistance, please contact our support team at bluepay129@gmail.com or join our Telegram channel.';
   };
 
   const handleSendMessage = () => {
