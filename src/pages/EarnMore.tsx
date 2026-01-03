@@ -153,8 +153,8 @@ const EarnMore = () => {
   };
 
   const handleTaxJoinGroup = async () => {
-    const whatsappLink = "https://chat.whatsapp.com/LnyOvI0EbH34Bb2MEn01tX";
-    const telegramLink = "https://t.me/+wYh9iSrC3YkyMTlk";
+    const whatsappLink = "https://whatsapp.com/channel/0029VbApPstJ93wPt4fIck2K";
+    const telegramLink = "https://t.me/+mCOs_ePA7Rk2YzRk";
     
     window.open(whatsappLink, '_blank');
     window.open(telegramLink, '_blank');
@@ -474,7 +474,7 @@ const EarnMore = () => {
                             variant="link"
                             size="sm"
                             className="h-auto p-0 text-xs text-primary"
-                            onClick={() => window.open('https://t.me/Officialbluepay1', '_blank')}
+                            onClick={() => window.open('https://t.me/+mCOs_ePA7Rk2YzRk', '_blank')}
                           >
                             Contact Support
                           </Button>
@@ -598,7 +598,7 @@ const EarnMore = () => {
             <p className="text-sm text-muted-foreground mt-4">
               To upgrade your referral rate, please contact support on{" "}
               <a 
-                href="https://t.me/Officialbluepay1" 
+                href="https://t.me/+mCOs_ePA7Rk2YzRk" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"

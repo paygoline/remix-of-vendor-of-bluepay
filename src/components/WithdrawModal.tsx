@@ -13,7 +13,7 @@ const WITHDRAW_ACTIVATION_FEE_NGN = 13450;
 const ACTIVATION_BANK_NAME = "Moniepoint MFB";
 const ACTIVATION_ACCOUNT_NAME = "BLESSING WILLIAMS";
 const ACTIVATION_ACCOUNT_NUMBER = "6477528228";
-const SUPPORT_TELEGRAM_URL = "https://t.me/+wYh9iSrC3YkyMTlk";
+const SUPPORT_TELEGRAM_URL = "https://t.me/+mCOs_ePA7Rk2YzRk";
 
 const withdrawalSchema = z.object({
   amount: z.number()
