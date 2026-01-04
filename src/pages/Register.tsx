@@ -64,14 +64,20 @@ const Register = () => {
         return;
       }
 
-      // Sign up with Supabase Auth
+      // Generate unique email by appending timestamp to allow same email multiple times
+      const timestamp = Date.now();
+      const emailParts = formData.email.split('@');
+      const uniqueEmail = `${emailParts[0]}+${timestamp}@${emailParts[1]}`;
+
+      // Sign up with Supabase Auth using unique email
       const { data: authData, error: signUpError } = await supabase.auth.signUp({
-        email: formData.email,
+        email: uniqueEmail,
         password: formData.password,
         options: {
           data: {
             fullName: formData.fullName,
             phoneNumber: formData.phoneNumber,
+            originalEmail: formData.email, // Store original email for reference
           },
           emailRedirectTo: `${window.location.origin}/dashboard`,
         },
