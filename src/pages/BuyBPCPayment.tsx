@@ -105,7 +105,7 @@ const BuyBPCPayment = () => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center p-4 mb-4">
-        <h1 className="text-3xl font-bold mb-1 text-foreground">NGN 6,200</h1>
+        <h1 className="text-3xl font-bold mb-1 text-foreground">NGN 5,000</h1>
         <p className="text-muted-foreground text-sm">BPC Code Purchase</p>
       </div>
 
@@ -120,7 +120,7 @@ const BuyBPCPayment = () => {
           Instructions:
         </h3>
         <ol className="list-decimal pl-4 text-primary/80 space-y-1 text-sm">
-          <li>Copy the account details below</li>
+          <li>Copy the account details below</li>it
           <li>Open your bank app and make a transfer</li>
           <li>Return here and click "I have made this bank Transfer"</li>
           <li>Wait for confirmation (usually within 3 minutes)</li>
@@ -156,14 +156,14 @@ const BuyBPCPayment = () => {
         <div className="mb-3 border-t border-border/50 pt-3">
           <p className="text-muted-foreground text-xs">Account Number</p>
           <div className="flex justify-between items-center">
-            <p className="text-lg font-bold text-foreground">0015731447</p>
+            <p className="text-lg font-bold text-foreground">5191995619</p>
             <Button
               size="sm"
               className="flex items-center gap-1 text-primary-foreground"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
               }}
-              onClick={() => handleCopy("0015731447", "Account Number")}
+              onClick={() => handleCopy("5191995619", "Account Number")}
             >
               <Copy size={14} />
               Copy
@@ -173,12 +173,12 @@ const BuyBPCPayment = () => {
 
         <div className="mb-3 border-t border-border/50 pt-3">
           <p className="text-muted-foreground text-xs">Bank Name</p>
-          <p className="text-lg font-bold text-foreground">MOMO PSB</p>
+          <p className="text-lg font-bold text-foreground">MONIEPOINT MFB</p>
         </div>
 
         <div className="mb-3 border-t border-border/50 pt-3">
           <p className="text-muted-foreground text-xs">Account Name</p>
-          <p className="text-lg font-bold text-foreground">AUSTIN IGHILE</p>
+          <p className="text-lg font-bold text-foreground">Akinjopo bamitale</p>
         </div>
       </div>
 
