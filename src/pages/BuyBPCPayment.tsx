@@ -105,7 +105,7 @@ const BuyBPCPayment = () => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center p-4 mb-4">
-        <h1 className="text-3xl font-bold mb-1 text-foreground">NGN 5,000</h1>
+        <h1 className="text-3xl font-bold mb-1 text-foreground">NGN 10,000</h1>
         <p className="text-muted-foreground text-sm">BPC Code Purchase</p>
       </div>
 
@@ -138,14 +138,14 @@ const BuyBPCPayment = () => {
         <div className="mb-3">
           <p className="text-muted-foreground text-xs">Amount</p>
           <div className="flex justify-between items-center">
-            <p className="text-lg font-bold text-foreground">NGN 6,200</p>
+            <p className="text-lg font-bold text-foreground">NGN 10,000</p>
             <Button
               size="sm"
               className="flex items-center gap-1 text-primary-foreground"
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
               }}
-              onClick={() => handleCopy("6200", "Amount")}
+              onClick={() => handleCopy("10000", "Amount")}
             >
               <Copy size={14} />
               Copy
