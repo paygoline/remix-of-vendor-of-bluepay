@@ -8,7 +8,7 @@ const Support = () => {
   const navigate = useNavigate();
 
   const handleLiveChatClick = () => {
-    window.open('https://t.me/bluepay10', '_blank');
+    window.open('https://t.me/BLUE_PAY_COMPANY', '_blank');
   };
 
   return (
@@ -95,7 +95,7 @@ const Support = () => {
               style={{
                 background: 'linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 69% 45%) 100%)',
               }}
-              onClick={() => window.open('https://wa.me/2347056337834')}
+              onClick={() => window.open('https://wa.me/message/TVEPEIHPVS4LO1')}
             >
               Chat on WhatsApp
             </Button>
