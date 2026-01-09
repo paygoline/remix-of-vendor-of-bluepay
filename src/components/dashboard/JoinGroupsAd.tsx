@@ -26,7 +26,7 @@ const JoinGroupsAd = () => {
   };
 
   const handleJoinTelegram = () => {
-    window.location.href = "https://t.me/Bluepaywebline";
+    window.location.href = "https://whatsapp.com/channel/0029VbB57so2kNFsmdLJuJ26";
     handleDismiss();
   };
 
