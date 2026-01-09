@@ -8,7 +8,7 @@ const Support = () => {
   const navigate = useNavigate();
 
   const handleLiveChatClick = () => {
-    window.open('https://t.me/BLUE_PAY_COMPANY', '_blank');
+    window.open('https://t.me/Bluepaywebline', '_blank');
   };
 
   return (
@@ -62,7 +62,7 @@ const Support = () => {
               style={{
                 background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--space-glow)) 100%)',
               }}
-              onClick={() => window.open('mailto:bluepay129@gmail.com')}
+              onClick={() => window.open('mailto:financial1240@gmail.com')}
             >
               Send Email
             </Button>
@@ -95,7 +95,7 @@ const Support = () => {
               style={{
                 background: 'linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 69% 45%) 100%)',
               }}
-              onClick={() => window.open('https://wa.me/message/TVEPEIHPVS4LO1')}
+              onClick={() => window.open('https://wa.me/message/NATF3OIIIZOSJ1')}
             >
               Chat on WhatsApp
             </Button>
@@ -137,7 +137,7 @@ const Support = () => {
 
         <div className="mt-6 text-center">
           <p className="text-muted-foreground text-sm">Available 24/7 for your support needs</p>
-          <p className="text-primary font-medium mt-1 text-sm">bluepay129@gmail.com</p>
+          <p className="text-primary font-medium mt-1 text-sm">financial1240@gmail.com</p>
         </div>
       </div>
     </div>
